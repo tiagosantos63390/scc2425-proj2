@@ -15,6 +15,7 @@
 
   [Link.](proj1)
   
-  [Code Delivery Form](https://forms.gle/TNPEi9iVojToEUDQ7)
+  [Code Delivery Form](https://forms.gle/TNPEi9iVojToEUDQ7) 
+  ***Deadline:*** November 8 (extended due to Internet outage preventing access to Azure Portal)
 
 ## Project #2:
