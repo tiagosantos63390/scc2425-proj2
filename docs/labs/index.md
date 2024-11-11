@@ -9,6 +9,8 @@
 * [Lab 5](lab5)  - Azure Functions;
 * [Lab 6](lab6)  - Artillery;
 *  Lab 7  - Project Support;
+*  Lab 8  - Project Support;
+*  Lab 9  - Cookies for Session Management;
 
 
 ## Project #1
