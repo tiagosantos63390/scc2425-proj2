@@ -10,7 +10,7 @@
 * [Lab 6](lab6)  - Artillery;
 *  Lab 7  - Project Support;
 *  Lab 8  - Project Support;
-*  Lab 9  - Cookies for Session Management;
+*  [Lab 9](lab9)  - Access Control (draft);
 
 
 ## Project #1
