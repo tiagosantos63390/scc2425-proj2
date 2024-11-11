@@ -9,12 +9,15 @@
 * [Lab 5](lab5)  - Azure Functions;
 * [Lab 6](lab6)  - Artillery;
 *  Lab 7  - Project Support;
+*  Lab 8  - Project Support;
+*  Lab 9  - Cookies for Session Management;
 
 
 ## Project #1
 
   [Link.](proj1)
   
-  [Code Delivery Form](https://forms.gle/TNPEi9iVojToEUDQ7)
+  [Code Delivery Form](https://forms.gle/TNPEi9iVojToEUDQ7) 
+  [Report Delivery Form](https://forms.gle/XcXNtuNz62xPP3oq5) 
 
 ## Project #2:
