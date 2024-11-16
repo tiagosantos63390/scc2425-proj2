@@ -7569,8 +7569,20 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Creating-a-container-in-Azure">Creating a container in Azure<a class="anchor-link" href="#Creating-a-container-in-Azure">¶</a></h1><h3 id="Creating-a-resource-group.">Creating a resource group.<a class="anchor-link" href="#Creating-a-resource-group.">¶</a></h3><p>You can create a resource group by running the following command:</p>
+<p><code>az group create --name &lt;resource-group-name&gt; --location &lt;resource-group-location&gt;</code></p>
+<h3 id="Example.">Example.<a class="anchor-link" href="#Example.">¶</a></h3><p><code>az group create --name scc2425-container-practice --location northeurope</code></p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f9e67008-0e00-4465-bde8-02f42d78c901">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Creating-a-container-in-Azure">Creating a container in Azure<a class="anchor-link" href="#Creating-a-container-in-Azure">¶</a></h1><h3 id="Starting-a-container.">Starting a container.<a class="anchor-link" href="#Starting-a-container.">¶</a></h3><p>You can start a container by running the following command:</p>
-<p><code>az container create --resource-group &lt;resource_group_name&gt; --name &lt;container_name&gt; --image &lt;image_name&gt; --ports &lt;list_of_ports&gt; --dns-name-label &lt;desired_dns_prefix&gt;</code></p>
+<p><code>az container create --resource-group &lt;resource_group_name&gt; --name &lt;container_name&gt; --image &lt;image_name&gt; --ports &lt;list_of_ports&gt; --dns-name-label &lt;desired_dns_prefix&gt; --registry-username &lt;dockerhub-username&gt; --registry-password &lt;dockerhub-password&gt; --registry-login-server index.docker.io</code></p>
 <p>In this example:</p>
 <ul>
 <li>ports is the list of ports that the container will be using</li>
@@ -7586,9 +7598,9 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Creating-a-container-in-Azure">Creating a container in Azure<a class="anchor-link" href="#Creating-a-container-in-Azure">¶</a></h1><h3 id="Example.">Example.<a class="anchor-link" href="#Example.">¶</a></h3><p><code>az container create --resource-group scc2425-container-practice --name scc2425-webapp-container --image kgallagher/scc2425-webapp --ports 8080 --dns-name-label scc2425-kgallagher-webapp</code></p>
+<h1 id="Creating-a-container-in-Azure">Creating a container in Azure<a class="anchor-link" href="#Creating-a-container-in-Azure">¶</a></h1><h3 id="Example.">Example.<a class="anchor-link" href="#Example.">¶</a></h3><p><code>az container create --resource-group scc2425-container-practice --name scc2425-webapp-container --image kcg295/scc2425-webapp --ports 8080 --dns-name-label scc2425-kgallagher-webapp --registry-username kcg295 --registry-password XXXXXXXXXXXXXXXXXXXXX --registry-login-server index.docker.io</code></p>
 <p>Check the output for the public IP address and URL. The URL should be something like:</p>
-<p><code>https://scc2425-kgallagher-webapp.northeurope.azurecontainer.io:8080/...</code></p>
+<p><code>scc2425-kgallagher-webapp.northeurope.azurecontainer.io:</code></p>
 </div>
 </div>
 </div>
@@ -7599,8 +7611,8 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Deleting-a-container-in-Azure">Deleting a container in Azure<a class="anchor-link" href="#Deleting-a-container-in-Azure">¶</a></h1><h3 id="Deleting-a-container.">Deleting a container.<a class="anchor-link" href="#Deleting-a-container.">¶</a></h3><p>Use the <code>az delete</code> command with the following format:</p>
-<p><code>az delete --resource-group &lt;resource_group&gt; --name &lt;container_name&gt;</code></p>
-<h3 id="Example.">Example.<a class="anchor-link" href="#Example.">¶</a></h3><p><code>az delete --resource-group scc2425-container-practice --name scc2425-webapp-container</code></p>
+<p><code>az container delete --resource-group &lt;resource_group&gt; --name &lt;container_name&gt;</code></p>
+<h3 id="Example.">Example.<a class="anchor-link" href="#Example.">¶</a></h3><p><code>az container delete --resource-group scc2425-container-practice --name scc2425-webapp-container</code></p>
 </div>
 </div>
 </div>
@@ -7626,8 +7638,8 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Kubernetes-(k8s)">Kubernetes (k8s)<a class="anchor-link" href="#Kubernetes-(k8s)">¶</a></h1><h3 id="K8s-Documentation">K8s Documentation<a class="anchor-link" href="#K8s-Documentation">¶</a></h3><p><a href="https://kubernetes.io/docs/home/">https://kubernetes.io/docs/home</a></p>
-<h3 id="Azure-K8s-Documentation">Azure K8s Documentation<a class="anchor-link" href="#Azure-K8s-Documentation">¶</a></h3><p><a href="https://docs.microsoft.com/en-us/azure/aks/">https://docs.microsoft.com/en-us/azure/aks/</a>
-<a href="https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough">(https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough</a></p>
+<h3 id="Azure-K8s-Documentation">Azure K8s Documentation<a class="anchor-link" href="#Azure-K8s-Documentation">¶</a></h3><p><a href="https://docs.microsoft.com/en-us/azure/aks/">https://docs.microsoft.com/en-us/azure/aks/</a></p>
+<p><a href="https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough">https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough</a></p>
 <h3 id="Minikube-Documentation">Minikube Documentation<a class="anchor-link" href="#Minikube-Documentation">¶</a></h3><p><a href="https://minikube.sigs.k8s.io/docs/">https://minikube.sigs.k8s.io/docs/</a></p>
 </div>
 </div>
@@ -7675,69 +7687,149 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Redis-Backend-Deployment">Redis Backend Deployment<a class="anchor-link" href="#Redis-Backend-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Order-Service-Backend-Deployment">Order Service Backend Deployment<a class="anchor-link" href="#Order-Service-Backend-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
 <span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure-vote-back</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">order-service</span>
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure-vote-back</span>
+<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">order-service</span>
 <span class="w">  </span><span class="nt">template</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure-vote-back</span>
+<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">order-service</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">nodeSelector</span><span class="p">:</span>
+<span class="w">        </span><span class="s">"kubernetes.io/os"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">order-service</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/azure-samples/aks-store-demo/order-service:latest</span>
 <span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e6efbba3-cbab-4888-b4a9-c1c893615777">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=deda6db0-a403-4647-859a-26408a227390">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Redis-Backend-Deployment">Redis Backend Deployment<a class="anchor-link" href="#Redis-Backend-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nn">...</span>
-<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">nodeSelector</span><span class="p">:</span>
-<span class="w">        </span><span class="s">"kubernetes.io/os"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span>
-<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure-vote-back</span>
-<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mcr.microsoft.com/oss/bitnami/redis:6.0.8</span>
-<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW_EMPTY_PASSWORD</span>
-<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"yes"</span>
-<span class="w">        </span><span class="nt">resources</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">requests</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">250m</span>
-<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256Mi</span>
-<span class="w">          </span><span class="nt">limits</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500m</span>
-<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024Mi</span>
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Order-Service-Backend-Deployment">Order Service Backend Deployment<a class="anchor-link" href="#Order-Service-Backend-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nn">...</span>
 <span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6379</span>
-<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3000</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ORDER_QUEUE_HOSTNAME</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"rabbitmq"</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ORDER_QUEUE_PORT</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"5672"</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ORDER_QUEUE_USERNAME</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"username"</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ORDER_QUEUE_PASSWORD</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"password"</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ORDER_QUEUE_NAME</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"orders"</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FASTIFY_ADDRESS</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"0.0.0.0"</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d5ec94a9-64d0-43ef-998e-895f87ba231b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=70243a7d-1f12-4b32-b2ff-944551c0da9f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Redis-Backend-Service">Redis Backend Service<a class="anchor-link" href="#Redis-Backend-Service">¶</a></h3><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Order-Service-Backend-Deployment">Order Service Backend Deployment<a class="anchor-link" href="#Order-Service-Backend-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nn">...</span>
+<span class="w">        </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1m</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50Mi</span>
+<span class="w">          </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">75m</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128Mi</span>
+<span class="w">        </span><span class="nt">startupProbe</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/health</span>
+<span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3000</span>
+<span class="w">          </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class="w">          </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=623e0c78-d0fa-437a-91c2-72dc4541a955">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Order-Service-Backend-Deployment">Order Service Backend Deployment<a class="anchor-link" href="#Order-Service-Backend-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nn">...</span>
+<span class="w">        </span><span class="nt">readinessProbe</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/health</span>
+<span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3000</span>
+<span class="w">          </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">          </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">        </span><span class="nt">livenessProbe</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/health</span>
+<span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3000</span>
+<span class="w">          </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">          </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67f2bd55-c5fa-42e3-a422-d21e1c8357fc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Order-Service-Backend-Deployment">Order Service Backend Deployment<a class="anchor-link" href="#Order-Service-Backend-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nn">...</span>
+<span class="w">      </span><span class="nt">initContainers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wait-for-rabbitmq</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">busybox</span>
+<span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">'sh'</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">'-c'</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">'until</span><span class="nv"> </span><span class="s">nc</span><span class="nv"> </span><span class="s">-zv</span><span class="nv"> </span><span class="s">rabbitmq</span><span class="nv"> </span><span class="s">5672;</span><span class="nv"> </span><span class="s">do</span><span class="nv"> </span><span class="s">echo</span><span class="nv"> </span><span class="s">waiting</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">rabbitmq;</span><span class="nv"> </span><span class="s">sleep</span><span class="nv"> </span><span class="s">2;</span><span class="nv"> </span><span class="s">done;'</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1m</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50Mi</span>
+<span class="w">          </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">75m</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128Mi</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6ee48675-07cd-460e-ad4b-c24b13b645e6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Order-Service-Backend-Service">Order Service Backend Service<a class="anchor-link" href="#Order-Service-Backend-Service">¶</a></h3><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
 <span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure-vote-back</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">order-service</span>
 <span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterIP</span>
 <span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6379</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3000</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3000</span>
 <span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure-vote-back</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">order-service</span>
 </pre></div>
 </div>
 </div>
@@ -7748,49 +7840,75 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Redis-Frontend-Deployment">Redis Frontend Deployment<a class="anchor-link" href="#Redis-Frontend-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Product-Service-Deployment">Product Service Deployment<a class="anchor-link" href="#Product-Service-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
 <span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure-vote-front</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">product-service</span>
 <span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure-vote-front</span>
+<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">product-service</span>
 <span class="w">  </span><span class="nt">template</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure-vote-front</span>
+<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">product-service</span>
 <span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">nodeSelector</span><span class="p">:</span>
 <span class="w">        </span><span class="s">"kubernetes.io/os"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f390ea46-3d96-4066-8e3b-5b31abd50ceb">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0785a441-be0c-4706-90da-e90a928efc20">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Redis-Frontend-Deployment">Redis Frontend Deployment<a class="anchor-link" href="#Redis-Frontend-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nn">...</span>
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Product-Service-Deployment">Product Service Deployment<a class="anchor-link" href="#Product-Service-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nn">...</span>
 <span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure-vote-front</span>
-<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mcr.microsoft.com/azuredocs/azure-vote-front:v2</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">product-service</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/azure-samples/aks-store-demo/product-service:latest</span>
+<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3002</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AI_SERVICE_URL</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"http://ai-service:5001/"</span>
 <span class="w">        </span><span class="nt">resources</span><span class="p">:</span>
 <span class="w">          </span><span class="nt">requests</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">250m</span>
-<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256Mi</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1m</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Mi</span>
 <span class="w">          </span><span class="nt">limits</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500m</span>
-<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024Mi</span>
-<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
-<span class="w">        </span><span class="nt">env</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">REDIS</span>
-<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"azure-vote-back"</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2m</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20Mi</span>
+<span class="w">        </span><span class="w w-Error"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=287b7d35-b87f-4d8d-8d93-74d01bfd4325">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Product-Service-Deployment">Product Service Deployment<a class="anchor-link" href="#Product-Service-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nn">...</span>
+<span class="w">        </span><span class="nt">readinessProbe</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/health</span>
+<span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3002</span>
+<span class="w">          </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">          </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">        </span><span class="nt">livenessProbe</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/health</span>
+<span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3002</span>
+<span class="w">          </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">          </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 </pre></div>
 </div>
 </div>
@@ -7801,16 +7919,140 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Redis-Frontend-Service">Redis Frontend Service<a class="anchor-link" href="#Redis-Frontend-Service">¶</a></h3><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Product-Service-Service">Product Service Service<a class="anchor-link" href="#Product-Service-Service">¶</a></h3><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
 <span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure-vote-front</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">product-service</span>
 <span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterIP</span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3002</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3002</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">product-service</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46a8f6e2-c636-45f0-a8a9-2c9c3005c2fa">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Store-Front-Deployment">Store Front Deployment<a class="anchor-link" href="#Store-Front-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">store-front</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">store-front</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">store-front</span>
+<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">nodeSelector</span><span class="p">:</span>
+<span class="w">        </span><span class="s">"kubernetes.io/os"</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=afb4922f-7b41-4a83-82b5-07838797c6cc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Store-Front-Deployment">Store Front Deployment<a class="anchor-link" href="#Store-Front-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nn">...</span>
+<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">store-front</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/azure-samples/aks-store-demo/store-front:latest</span>
+<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">store-front</span>
+<span class="w">        </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VUE_APP_ORDER_SERVICE_URL</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"http://order-service:3000/"</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VUE_APP_PRODUCT_SERVICE_URL</span>
+<span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">"http://product-service:3002/"</span>
+<span class="w">        </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1m</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200Mi</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0f5bbde6-a509-46d1-92e4-c40253529d85">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Store-Front-Deployment">Store Front Deployment<a class="anchor-link" href="#Store-Front-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nn">...</span>
+<span class="w">          </span><span class="nt">limits</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000m</span>
+<span class="w">            </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512Mi</span>
+<span class="w">       </span><span class="w w-Error"> </span><span class="nt">startupProbe</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/health</span>
+<span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">          </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">          </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">        </span><span class="nt">readinessProbe</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/health</span>
+<span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">          </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=04ea04ae-470f-4321-8611-e15d557e4280">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Store-Front-Deployment">Store Front Deployment<a class="anchor-link" href="#Store-Front-Deployment">¶</a></h3><div class="highlight"><pre><span></span><span class="nn">...</span>
+<span class="w">          </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">          </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">       </span><span class="w w-Error"> </span><span class="nt">livenessProbe</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">httpGet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/health</span>
+<span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class="w">          </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">          </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">          </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5f77ccd8-32fb-42b8-8acc-fa7f8d3bedb2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Simple-K8s-Example">Simple K8s Example<a class="anchor-link" href="#Simple-K8s-Example">¶</a></h1><h3 id="Store-Front-Service">Store Front Service<a class="anchor-link" href="#Store-Front-Service">¶</a></h3><div class="highlight"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">store-front</span>
+<span class="nt">spec</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
 <span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">azure-vote-front</span>
+<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">store-front</span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
 </pre></div>
 </div>
 </div>
@@ -7865,14 +8107,32 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Using-K8s-in-Azure">Using K8s in Azure<a class="anchor-link" href="#Using-K8s-in-Azure">¶</a></h1><h3 id="Create-a-service-principal.">Create a service principal.<a class="anchor-link" href="#Create-a-service-principal.">¶</a></h3><p><code>az ad sp create-for-rbac --name http://&lt;domain_prefix&gt; --role Contributor --scope /subscriptions/&lt;id_of_your_subscription&gt;</code></p>
-<h3 id="Example.">Example.<a class="anchor-link" href="#Example.">¶</a></h3><p><code>az ad sp create-for-rbac --name http://scc2425-kuber --role Contributor --scope /subscriptions/&lt;id_of_your_subscription&gt;</code></p>
+<h3 id="Example.">Example.<a class="anchor-link" href="#Example.">¶</a></h3><p><code>az ad sp create-for-rbac --name http://kcg-scc2425-kuber --role Contributor --scope /subscriptions/&lt;id_of_your_subscription&gt;</code></p>
 <h3 id="Returns-(example).">Returns (example).<a class="anchor-link" href="#Returns-(example).">¶</a></h3><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">"appId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31c09123-e077-4f72-9fbe-f5b99cafbf12"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://scc2425-kuber"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://kcg-scc2425-kuber"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"tenant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ae7e50a2-ed26-41f7-bd75-f49683f2433a"</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b3886a4e-fe71-4fd7-8d1d-d2a957698945">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Using-K8s-in-Azure">Using K8s in Azure<a class="anchor-link" href="#Using-K8s-in-Azure">¶</a></h1><h3 id="Register-for-Services-on-Azure-Portal">Register for Services on Azure Portal<a class="anchor-link" href="#Register-for-Services-on-Azure-Portal">¶</a></h3><ul>
+<li>Home -&gt; Subscriptions -&gt; Azure for Students -&gt; Settings -&gt; Resource Providers.</li>
+<li>Register for ContainerService</li>
+<li>Register for Quotas</li>
+<li>Register for Compute</li>
+</ul>
+<h3 id="Create-Quotas.">Create Quotas.<a class="anchor-link" href="#Create-Quotas.">¶</a></h3><ul>
+<li>Home -&gt; Search for "Quotas" -&gt; Select "Quotas" -&gt; Compute -&gt; Total Regional vCPUs (North Europe) -&gt; New Quota Request -&gt; New Limit (4)</li>
+</ul>
 </div>
 </div>
 </div>
@@ -7907,7 +8167,7 @@ main {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Using-K8s-in-Azure">Using K8s in Azure<a class="anchor-link" href="#Using-K8s-in-Azure">¶</a></h1><h3 id="Install-kubectl.">Install kubectl.<a class="anchor-link" href="#Install-kubectl.">¶</a></h3><p><code>az aks install-cli</code></p>
-<h3 id="Use-the-cluster-using-kubectl.">Use the cluster using kubectl.<a class="anchor-link" href="#Use-the-cluster-using-kubectl.">¶</a></h3><p><code>kubectl apply -f azure-vote.yaml</code></p>
+<h3 id="Use-the-cluster-using-kubectl.">Use the cluster using kubectl.<a class="anchor-link" href="#Use-the-cluster-using-kubectl.">¶</a></h3><p><code>kubectl apply -f azure-store.yaml</code></p>
 <h3 id="Check-services-to-get-URL.">Check services to get URL.<a class="anchor-link" href="#Check-services-to-get-URL.">¶</a></h3><p><code>kubectl get services</code></p>
 <h3 id="Check-pods.">Check pods.<a class="anchor-link" href="#Check-pods.">¶</a></h3><p><code>kubectl get pods</code></p>
 <h3 id="Get-logs.">Get logs.<a class="anchor-link" href="#Get-logs.">¶</a></h3><p><code>kubectl logs -f &lt;pod-name&gt;</code></p>
