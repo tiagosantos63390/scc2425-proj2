@@ -7609,9 +7609,14 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Creating-a-Docker-Image">Creating a Docker Image<a class="anchor-link" href="#Creating-a-Docker-Image">¶</a></h1><h3 id="Run-the-docker-build-command">Run the docker build command<a class="anchor-link" href="#Run-the-docker-build-command">¶</a></h3><p><code>docker build -t &lt;tagname&gt; &lt;directory&gt;</code></p>
 <h3 id="Example">Example<a class="anchor-link" href="#Example">¶</a></h3><p><code>docker build -t scc2425-webapp .</code></p>
-</div>
-</div>
-</div>
+<h3 id="On-Newer-Macs">On Newer Macs<a class="anchor-link" href="#On-Newer-Macs">¶</a></h3><p>In case you don't have an amd64 chip, you should run the following command instead:</p>
+<pre><code>docker buildx build \                                                
+--push \                                                                        
+--platform linux/amd64 . -t tag &lt;dir&gt;                                     
+</code></pre>                                                                   
+</div>                                                                          
+</div>                                                                          
+</div>                                                                          
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6f262e89-8b77-4bcf-8abd-20b7ee98c83f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -7672,28 +7677,43 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Creating-a-container-in-Azure">Creating a container in Azure<a class="anchor-link" href="#Creating-a-container-in-Azure">¶</a></h1><h3 id="Starting-a-container.">Starting a container.<a class="anchor-link" href="#Starting-a-container.">¶</a></h3><p>You can start a container by running the following command:</p>
-<p><code>az container create --resource-group &lt;resource_group_name&gt; --name &lt;container_name&gt; --image &lt;image_name&gt; --ports &lt;list_of_ports&gt; --dns-name-label &lt;desired_dns_prefix&gt; --registry-username &lt;dockerhub-username&gt; --registry-password &lt;dockerhub-password&gt; --registry-login-server index.docker.io</code></p>
-<p>In this example:</p>
-<ul>
-<li>ports is the list of ports that the container will be using</li>
+<p><code>az container create --resource-group &lt;resource_group_name&gt; --name &lt;container_name&gt; --image &lt;image_name&gt; --ports &lt;list_of_ports&gt; --dns-name-label &lt;desired_dns_prefix&gt;</code></p>
+<p>In this example:</p>                                                         
+<ul>                                                                            
+<li>ports is the list of ports that the container will be using</li>            
 <li>dns-name-label is the desired DNS prefix for a container with a public IP</li>
 <li>You can also add environment variables using <code>--environment-variables &lt;property_name&gt;=&lt;property_value&gt;</code></li>
-</ul>
-</div>
-</div>
-</div>
+</ul>                                                                           
+</div>                                                                          
+</div>                                                                          
+</div>                                                                          
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f02d137b-7deb-4232-8334-8bbdb6fdeae1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Creating-a-container-in-Azure">Creating a container in Azure<a class="anchor-link" href="#Creating-a-container-in-Azure">¶</a></h1><h3 id="Example.">Example.<a class="anchor-link" href="#Example.">¶</a></h3><p><code>az container create --resource-group scc2425-container-practice --name scc2425-webapp-container --image kcg295/scc2425-webapp --ports 8080 --dns-name-label scc2425-kgallagher-webapp --registry-username kcg295 --registry-password XXXXXXXXXXXXXXXXXXXXX --registry-login-server index.docker.io</code></p>
+<h1 id="Creating-a-container-in-Azure">Creating a container in Azure<a class="anchor-link" href="#Creating-a-container-in-Azure">¶</a></h1><h3 id="Example.">Example.<a class="anchor-link" href="#Example.">¶</a></h3><p><code>az container create --resource-group scc2425-container-practice --name scc2425-webapp-container --image kcg295/scc2425-webapp --ports 8080 --dns-name-label scc2425-kgallagher-webapp</code></p>
 <p>Check the output for the public IP address and URL. The URL should be something like:</p>
-<p><code>scc2425-kgallagher-webapp.northeurope.azurecontainer.io:</code></p>
+<p><code>scc2425-kgallagher-webapp.northeurope.azurecontainer.io</code></p>     
+<p>You can test this by going the url at the following location. It should work the same as Lab 9's code.</p>
+<p><code>http://&lt;url&gt;:8080/webapp/rest/login</code></p>                   
+<p>For my example, it was:</p>                                                  
+<p><code>http://scc2425-kgallagher-webapp.northeurope.azurecontainer.io/webapp/rest/login</code></p>
+</div>                                                                          
+</div>                                                                          
+</div>                                                                          
 </div>
-</div>
-</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=816936a0-64fa-43fc-b4ea-defef84bee25">
+<div class="jp-Cell-inputWrapper" tabindex="0">                                 
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">             
+</div>                                                                          
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Creating-a-container-in-Azure">Creating a container in Azure<a class="anchor-link" href="#Creating-a-container-in-Azure">¶</a></h1><h3 id="Starting-a-container.">Starting a container.<a class="anchor-link" href="#Starting-a-container.">¶</a></h3><p>If the previous command didn't work for you, you can try this one instead:</p>
+<p><code>az container create --resource-group &lt;resource_group_name&gt; --name &lt;container_name&gt; --image &lt;image_name&gt; --ports &lt;list_of_ports&gt; --dns-name-label &lt;desired_dns_prefix&gt; --registry-username &lt;dockerhub-username&gt; --registry-password &lt;dockerhub-password&gt; --registry-login-server index.docker.io</code></p>
+</div>                                                                          
+</div>                                                                          
+</div>                                                                          
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5312f46f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
