@@ -21,3 +21,6 @@
   [Report Delivery Form](https://forms.gle/XcXNtuNz62xPP3oq5) 
 
 ## Project #2:
+
+  [Link.](proj2)
+
