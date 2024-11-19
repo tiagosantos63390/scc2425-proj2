@@ -10,7 +10,8 @@
 * [Lab 6](lab6)  - Artillery;
 *  Lab 7  - Project Support;
 *  Lab 8  - Project Support;
-*  [Lab 9](lab9)  - Access Control (draft);
+* [Lab 9](lab9)  - Access Control;
+* [Lab 10](lab10) - Kubernetes;
 
 
 ## Project #1
