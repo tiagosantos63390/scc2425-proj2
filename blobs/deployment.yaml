@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blobs-deployment
+  labels:
+    app: blobs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blobs
+  template:
+    metadata:
+      labels:
+        app: blobs
+    spec:
+      containers:
+        - name: blobs-server
+          image: deatpt/blobservice:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: BLOB_STORAGE_ROOT
+              value: /data
+          volumeMounts:
+            - name: blobs-storage
+              mountPath: /data
+      volumes:
+        - name: blobs-storage
+          persistentVolumeClaim:
+            claimName: blob-pvc
