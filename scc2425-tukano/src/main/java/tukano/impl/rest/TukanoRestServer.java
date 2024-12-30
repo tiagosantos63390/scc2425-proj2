@@ -1,55 +1,67 @@
 package tukano.impl.rest;
 
-import java.net.URI;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 
-import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
-import org.glassfish.jersey.server.ResourceConfig;
-
+import jakarta.ws.rs.ApplicationPath;
+import jakarta.ws.rs.core.Application;
 import tukano.impl.Token;
 import utils.Args;
 import utils.IP;
+import utils.Props;
+import java.util.Properties;
 
-
-public class TukanoRestServer {
+@ApplicationPath("/rest")
+public class TukanoRestServer extends Application {
 	final private static Logger Log = Logger.getLogger(TukanoRestServer.class.getName());
 
 	static final String INETADDR_ANY = "0.0.0.0";
-	static String SERVER_BASE_URI = "http://%s:%s/rest";
+	static String SERVER_BASE_URI = "http://%s:%s/tukano/rest";
 
 	public static final int PORT = 8080;
 
 	public static String serverURI;
+
+	private final Set<Object> singletons = new HashSet<>();
+	private final Set<Class<?>> resources = new HashSet<>();
 			
-	static {
-		System.setProperty("java.util.logging.SimpleFormatter.format", "%4$s: %5$s");
-	}
-	
-	protected TukanoRestServer() {
+	public TukanoRestServer() throws IOException {
+
+        System.setProperty("java.util.logging.SimpleFormatter.format", "%4$s: %5$s");
 		serverURI = String.format(SERVER_BASE_URI, IP.hostname(), PORT);
-	}
+
+        // Load props
+        try {
+			var in = Props.class.getClassLoader().getResourceAsStream("keys.props");
+			var reader = new InputStreamReader(in);
+			var props = new Properties();
+            props.load(reader);
+			props.forEach( (k,v) -> System.setProperty(k.toString(), v.toString()));
+			System.getenv().forEach( System::setProperty );
+            
+		} catch (IOException e) {
+			System.err.println("Error loading props file: " + e.getMessage());
+        }
+
+        singletons.add(new RestUsersResource());
+        singletons.add(new RestShortsResource());
+
+        // Load properties and configurations
+        Token.setSecret(Args.valueOf("-secret", ""));
+        Log.info("Tukano Application initialized with resources and singletons");
+    }
 
 
-	protected void start() throws Exception {
-	
-		ResourceConfig config = new ResourceConfig();
-		
-		config.register(RestBlobsResource.class);
-		config.register(RestUsersResource.class); 
-		config.register(RestShortsResource.class);
-		
-		JdkHttpServerFactory.createHttpServer( URI.create(serverURI.replace(IP.hostname(), INETADDR_ANY)), config);
-		
-		Log.info(String.format("Tukano Server ready @ %s\n",  serverURI));
-	}
-	
-	
-	public static void main(String[] args) throws Exception {
-		Args.use(args);
-		
-		Token.setSecret( Args.valueOf("-secret", ""));
-//		Props.load( Args.valueOf("-props", "").split(","));
-		
-		new TukanoRestServer().start();
-	}
+	@Override
+    public Set<Class<?>> getClasses() {
+        return resources;
+    }
+
+    @Override
+    public Set<Object> getSingletons() {
+        return singletons;
+    }
 }

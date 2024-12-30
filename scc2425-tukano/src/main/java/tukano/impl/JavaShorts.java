@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import tukano.api.Blobs;
 import tukano.api.Result;
 import tukano.api.Short;
 import tukano.api.Shorts;
@@ -80,7 +79,7 @@ public class JavaShorts implements Shorts {
 					var query = format("DELETE Likes l WHERE l.shortId = '%s'", shortId);
 					hibernate.createNativeQuery( query, Likes.class).executeUpdate();
 					
-					JavaBlobs.getInstance().delete(shrt.getBlobUrl(), Token.get() );
+					// JavaBlobs.getInstance().delete(shrt.getBlobUrl(), Token.get() );
 				});
 			});	
 		});
