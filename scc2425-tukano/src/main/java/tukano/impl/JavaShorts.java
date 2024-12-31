@@ -80,6 +80,8 @@ public class JavaShorts implements Shorts {
 					hibernate.createNativeQuery( query, Likes.class).executeUpdate();
 					
 					// JavaBlobs.getInstance().delete(shrt.getBlobUrl(), Token.get() );
+					RabbitMQ rabbitMQ = new RabbitMQ();
+        			boolean pwdOk = rabbitMQ.deleteBlob(shrt.getBlobUrl(), Token.get() );
 				});
 			});	
 		});

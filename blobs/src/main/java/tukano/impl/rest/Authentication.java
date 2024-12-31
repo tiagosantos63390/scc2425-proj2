@@ -36,7 +36,10 @@ public class Authentication {
 	@POST
 	public Response login( @FormParam(USER) String user, @FormParam(PWD) String password ) {
 		System.out.println("user: " + user + " pwd:" + password );
-		boolean pwdOk = true;
+
+		RabbitMQ rabbitMQ = new RabbitMQ();
+        boolean pwdOk = rabbitMQ.verifyUserPassword(user, password); // verify password with RabbitMQ class
+
 		if (pwdOk) {
 			String uid = UUID.randomUUID().toString();
 			var cookie = new NewCookie.Builder(COOKIE_KEY)
