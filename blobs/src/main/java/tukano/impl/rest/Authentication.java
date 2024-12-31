@@ -36,7 +36,7 @@ public class Authentication {
 	@POST
 	public Response login( @FormParam(USER) String user, @FormParam(PWD) String password ) {
 		System.out.println("user: " + user + " pwd:" + password );
-		boolean pwdOk = true; // replace with code to check user password
+		boolean pwdOk = true;
 		if (pwdOk) {
 			String uid = UUID.randomUUID().toString();
 			var cookie = new NewCookie.Builder(COOKIE_KEY)
@@ -48,11 +48,13 @@ public class Authentication {
 					.build();
 
 			try (Jedis jedis = RedisCache.getCachePool().getResource()) {
+				
 				var s = new Session( uid, user);
+				
 				jedis.setex(s.uid(), 3600, JSON.encode(s));
+			
 			}
 
-			
             return Response.ok()
                     .cookie(cookie) 
                     .build();
@@ -66,10 +68,14 @@ public class Authentication {
 	@Produces(MediaType.TEXT_HTML)
 	public String login() {
 		try {
+
 			var in = getClass().getClassLoader().getResourceAsStream(LOGIN_PAGE);
-			return new String( in.readAllBytes() );			
+			return new String( in.readAllBytes() );	
+
 		} catch( Exception x ) {
+
 			throw new WebApplicationException( Status.INTERNAL_SERVER_ERROR );
+		
 		}
 	}
 
@@ -82,6 +88,7 @@ public class Authentication {
 			throw new NotAuthorizedException("No session initialized");
 
 		try (Jedis jedis = RedisCache.getCachePool().getResource()) {
+			
 			var value = jedis.get(cookie.getValue());
 			Session session = JSON.decode(value, Session.class);
 
@@ -94,6 +101,7 @@ public class Authentication {
 			if(userId.equals(ADMIN) && !session.user().equals(userId)) {
 				throw new NotAuthorizedException("user : " + session.user() + "not authorized");
 			}
+
 		}
 	}
 

@@ -34,7 +34,7 @@ public class TukanoRestServer extends Application {
 		serverURI = String.format(SERVER_BASE_URI, IP.hostname(), PORT);
 
         // Load props
-        try {
+        /*try {
 			var in = Props.class.getClassLoader().getResourceAsStream("keys.props");
 			var reader = new InputStreamReader(in);
 			var props = new Properties();
@@ -44,7 +44,7 @@ public class TukanoRestServer extends Application {
             
 		} catch (IOException e) {
 			System.err.println("Error loading props file: " + e.getMessage());
-        }
+        }*/
 
         singletons.add(new RestUsersResource());
         singletons.add(new RestShortsResource());
