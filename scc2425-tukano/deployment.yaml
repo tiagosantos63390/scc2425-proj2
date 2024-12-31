@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tukano-deployment
+  labels:
+    app: tukano
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tukano
+  template:
+    metadata:
+      labels:
+        app: tukano
+    spec:
+      containers:
+        - name: tukano-server
+          image: deatpt/tukanoservice:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TUKANO_SECRET
+              value: "defaultSecret1234567890" # Matches your application's Token secret
